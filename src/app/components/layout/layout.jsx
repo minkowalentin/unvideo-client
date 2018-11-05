@@ -5,7 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
 
-import './layout.css';
+import './layout.scss';
 
 export class Layout extends React.Component {
   state = {

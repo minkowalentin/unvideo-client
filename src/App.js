@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'typeface-roboto';
-import './style/styles.css';
+import './style/styles.scss';
 
 import { BrowserRouter } from 'react-router-dom';
 
