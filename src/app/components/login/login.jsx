@@ -1,10 +1,6 @@
 import React from 'react';
-
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-
-import '../../../style/styles.css';
 
 export default class Login extends React.Component {
 
@@ -20,7 +16,6 @@ render() {
         <TextField
           id="email"
           label="email"
-          placeholder="Email"
           margin="normal"
         />
       </div>
@@ -28,7 +23,7 @@ render() {
       <div>
         <TextField
           id="password-input"
-          label="Password"
+          label="password"
           type="password"
           margin="normal"
         />
@@ -36,6 +31,7 @@ render() {
       <Button variant="contained" color="primary">
         Sign in
       </Button>
+      <p className={"comment link"}>Create Account</p>
     </form>
   </div>
   );

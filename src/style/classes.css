@@ -1,0 +1,12 @@
+.comment {
+    font-size: 90%;
+    color: #585858;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.margin-s {
+    margin: 5px;
+}

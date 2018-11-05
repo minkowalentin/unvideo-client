@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import 'typeface-roboto';
+import './style/styles.css';
+
 import { BrowserRouter } from 'react-router-dom';
 
 // components
@@ -14,7 +16,9 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Layout />
-            <RouterComponent />
+              <div className="content">
+                <RouterComponent />
+              </div>
           </div>
         </BrowserRouter>
       </div>

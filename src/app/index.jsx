@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import 'typeface-roboto';
-
-// components
-
 
 class IndexComponent extends Component {
   render() {
     return (
       <div>
-      <p>main</p>
+      <p>home</p>
       </div>
     );
   }
