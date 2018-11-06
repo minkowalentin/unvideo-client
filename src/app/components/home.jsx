@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import 'typeface-roboto';
-
-// components
-
+import MainHeader from './shared/mainHeader';
 
 class IndexComponent extends Component {
   render() {
     return (
       <div>
-      <p>main</p>
+        <MainHeader header="Home"></MainHeader>
       </div>
     );
   }

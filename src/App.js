@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import 'typeface-roboto';
+import { ApolloProvider } from "react-apollo";
+import client from './app/graphql/apollo.config'
 import { BrowserRouter } from 'react-router-dom';
+
+import 'typeface-roboto';
+import './style/styles.scss';
 
 // components
 import Layout from './app/components/layout/layout';
@@ -10,14 +14,18 @@ class App extends Component {
 
   render() {
     return (
+      <ApolloProvider client={client}>
       <div>
         <BrowserRouter>
           <div>
             <Layout />
-            <RouterComponent />
+              <div className="content">
+                <RouterComponent />
+              </div>
           </div>
         </BrowserRouter>
       </div>
+      </ApolloProvider>
     );
   }
 }
