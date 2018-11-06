@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import MainHeader from './shared/mainHeader';
 
 class IndexComponent extends Component {
   render() {
     return (
       <div>
-      <p>home</p>
+        <MainHeader header="Home"></MainHeader>
       </div>
     );
   }

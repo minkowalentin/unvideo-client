@@ -1,3 +1,9 @@
+@import "./variables.scss";
+
+
+.header {
+    color: $light_gray;
+}
 .comment {
     font-size: 90%;
     color: #585858;

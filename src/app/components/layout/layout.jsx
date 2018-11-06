@@ -8,32 +8,18 @@ import Paper from '@material-ui/core/Paper';
 import './layout.scss';
 
 export class Layout extends React.Component {
-  state = {
-    value: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuItem: getNavItem(this.props.location.pathname)
+    };
+  }
 
   handleChange = (event, value) => {
-    this.setState({ value });
-
-    console.log(value);
-
-    switch (value) {
-
-      // Home
-      case 0:
-      this.goHome();
-        break;
-      // Login
-      case 1:
-      this.loadLoginComp();
-        break;
-      // Register  
-      case 2:
-      this.loadRegisterComp();
-      break;
-      default:
-        break;
-    }
+    this.setState({
+      menuItem: value,
+    });
+    this.navigateNav(value)
   };
 
   loadLoginComp = () => {
@@ -44,29 +30,53 @@ export class Layout extends React.Component {
     this.props.history.push('/register');
   }
 
+  loadUserManagementComp = () => {
+    this.props.history.push('/user-management')
+  }
+
   goHome = () => {
     this.props.history.push('');
   }
+
+  navigateNav = (value) => {
+    switch (value) {
+      case 'home':
+        this.goHome();
+        break;
+      case 'login':
+        this.loadLoginComp();
+        break;
+      case 'register':
+        this.loadRegisterComp();
+        break;
+        case 'user-management':
+        this.loadUserManagementComp();
+        break;
+      default:
+        break;
+    }
+  }
   
   render() {
-    const { value } = this.state;
+    const value = this.state.menuItem;
 
     return (
       <div>
         <AppBar position="static">
-        <Paper square>
+          <Paper square>
 
-          <Tabs
-          value={value} 
-          onChange={this.handleChange}
-          indicatorColor="primary"
-          textColor="primary">
-          
-            <Tab label="Home" /> 
-            <Tab label="Login" />
-            <Tab label="Register" />
-            
-          </Tabs>
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary">
+
+              <Tab label="Home" value="home" />
+              <Tab label="Login" value="login" />
+              <Tab label="Register" value="register" />
+              <Tab label="User Management" value="user-management" />
+
+            </Tabs>
           </Paper>
         </AppBar>
       </div>
@@ -74,5 +84,27 @@ export class Layout extends React.Component {
   }
 };
 
+// gets nav item corresponding to url
+function getNavItem (url) {
+  let navItem;
+  switch (url) {
+    case '/':
+      navItem = 'home';
+      break;
+    case '/register':
+      navItem = 'register';
+      break;
+    case '/login':
+    navItem = 'login'
+    break;  
+    case '/user-management':
+    navItem = 'user-management'
+    break;  
+    default:
+    navItem = null;
+      break;
+  }
+  return navItem;
+}
 export default withRouter(Layout);
 
