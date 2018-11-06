@@ -25,7 +25,22 @@ mutation CreateUser($email: String!, $username: String!, $password: String!) {
 }
 `;
 
+const LOGIN_USER = gql `
+    query LoginUser($email: String!, $password: String!) {
+        loginUser(
+            email: $email,
+            password: $password
+        ){
+            id,
+            email,
+            username,
+            token
+        }
+    }
+`
+
 export {
     GET_ALL_USERS_QUERY,
-    CREATE_USER_MUTATION
+    CREATE_USER_MUTATION,
+    LOGIN_USER
 };
