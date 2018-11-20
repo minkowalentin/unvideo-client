@@ -6,6 +6,9 @@ import Login from './components/login/login';
 import Register from './components/register/register';
 import IndexComponent from './components/home';
 import UserManagement from './components/userManagement/userManagement';
+import { PrivateRoute } from './components/shared/routing/pirvateRoute';
+
+
 
  class RouterComponent extends React.Component {
   
@@ -16,7 +19,7 @@ import UserManagement from './components/userManagement/userManagement';
           <Route path="/" exact render={props => <IndexComponent {...props} />} />
           <Route path="/login" exact  render={props => <Login {...props}/>} />
           <Route path="/register" exact render={props => <Register {...props}/>}  />
-          <Route path="/user-management" exact render={props => <UserManagement {...props}/>}  />
+          <PrivateRoute path="/user-management" component={UserManagement}  />
         </Switch>
       </div>
     );

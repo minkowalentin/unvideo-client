@@ -7,6 +7,12 @@ import Paper from '@material-ui/core/Paper';
 
 import './layout.scss';
 
+//api
+import { logout } from '../../api/global';
+import { isAuthenticated } from '../shared/routing/routeGuard';
+
+// needs serious reformatting
+
 export class Layout extends React.Component {
   constructor(props) {
     super(props);
@@ -31,11 +37,16 @@ export class Layout extends React.Component {
   }
 
   loadUserManagementComp = () => {
-    this.props.history.push('/user-management')
+    this.props.history.push('/user-management');
   }
 
   goHome = () => {
     this.props.history.push('');
+  }
+
+  logoutUser = () => {
+    this.props.history.push('/login');
+    logout();
   }
 
   navigateNav = (value) => {
@@ -49,43 +60,65 @@ export class Layout extends React.Component {
       case 'register':
         this.loadRegisterComp();
         break;
-        case 'user-management':
+      case 'user-management':
         this.loadUserManagementComp();
+        break;
+        case 'logout':
+        this.logoutUser();
         break;
       default:
         break;
     }
   }
-  
+
   render() {
     const value = this.state.menuItem;
 
-    return (
-      <div>
-        <AppBar position="static">
-          <Paper square>
-
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              textColor="primary">
-
-              <Tab label="Home" value="home" />
-              <Tab label="Login" value="login" />
-              <Tab label="Register" value="register" />
-              <Tab label="User Management" value="user-management" />
-
-            </Tabs>
-          </Paper>
-        </AppBar>
-      </div>
-    );
+    if(isAuthenticated()) {
+      return (
+        <div>
+          <AppBar position="static">
+            <Paper square>
+  
+              <Tabs
+                value={value}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary">
+  
+                <Tab label="Home" value="home" />
+                <Tab label="User Management" value="user-management" />
+                <Tab label="Logout" value="logout" />
+  
+              </Tabs>
+            </Paper>
+          </AppBar>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <AppBar position="static">
+            <Paper square>
+  
+              <Tabs
+                value={value}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary">
+                <Tab label="Login" value="login" />
+                <Tab label="Register" value="register" />  
+              </Tabs>
+            </Paper>
+          </AppBar>
+        </div>
+      );
+    }
   }
 };
 
 // gets nav item corresponding to url
-function getNavItem (url) {
+function getNavItem(url) {
   let navItem;
   switch (url) {
     case '/':
@@ -95,13 +128,16 @@ function getNavItem (url) {
       navItem = 'register';
       break;
     case '/login':
-    navItem = 'login'
-    break;  
+      navItem = 'login'
+      break;
     case '/user-management':
-    navItem = 'user-management'
-    break;  
+      navItem = 'user-management'
+      break;
+      case '/logout':
+      navItem = 'user-management'
+      break;
     default:
-    navItem = null;
+      navItem = null;
       break;
   }
   return navItem;

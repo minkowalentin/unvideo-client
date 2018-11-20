@@ -4,6 +4,9 @@ import Button from '@material-ui/core/Button';
 import MainHeader from '../shared/mainHeader';
 import loginUser from '../shared/quries/loginUser';
 
+//api
+import { setInitialLocalStorage } from '../../api/global';
+
 export default class Login extends React.Component {
   constructor() {
     super();
@@ -28,9 +31,9 @@ export default class Login extends React.Component {
   }
 
   onSuccesfullLogin = ({loginUser}) => {
-    // set local storage
-    localStorage.setItem('token', loginUser.token);
-    localStorage.setItem('id', loginUser.id);
+    setInitialLocalStorage(loginUser.token, loginUser.id);
+    // to do
+    // update layout component state
     alert('you have logged in!')
   }
 
