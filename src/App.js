@@ -7,8 +7,8 @@ import 'typeface-roboto';
 import './style/styles.scss';
 
 // components
-import Layout from './app/components/layout/layout';
-import RouterComponent from './app/router';
+import Layout from './app/components/container/layout/layout';
+import RouterComponent from './app/routing/router';
 
 class App extends Component {
 
@@ -20,7 +20,7 @@ class App extends Component {
           <div>
             <Layout />
               <div className="content">
-                <RouterComponent />
+                <RouterComponent/>
               </div>
           </div>
         </BrowserRouter>

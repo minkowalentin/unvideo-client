@@ -1,11 +1,13 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import MainHeader from '../shared/mainHeader';
-import loginUser from '../shared/quries/loginUser';
+import MainHeader from '../../presentation/mainHeader';
+import loginUser from '../../../graphql/quries/loginUser';
 
 //api
-import { setInitialLocalStorage } from '../../api/global';
+import { setInitialLocalStorage } from '../../../api/global';
+import errorHandling from '../../../api/errorHandling'
+
 
 export default class Login extends React.Component {
   constructor() {
@@ -22,24 +24,23 @@ export default class Login extends React.Component {
       .then((value) => {
         // success
         this.onSuccesfullLogin(value);
-      }, (error) => {
-        // error
-        this.onFailedLogin(error);
+        //error
+      }, (graphQLErrors, networkError) => {
+        if (graphQLErrors) {
+          errorHandling.graphiqlError(graphQLErrors);
+        }
+        if (networkError) {
+          errorHandling.networkError(networkError)
+        }
+
       })
     e.preventDefault();
     this.setState({ email: '', password: '' });
   }
 
-  onSuccesfullLogin = ({loginUser}) => {
+  onSuccesfullLogin = ({ loginUser }) => {
     setInitialLocalStorage(loginUser.token, loginUser.id);
-    // to do
-    // update layout component state
-    alert('you have logged in!')
-  }
-
-  onFailedLogin = (errorData) => {
-    console.log('Error', errorData);
-    alert('Ye failed');
+    this.props.history.push("/");
   }
 
   handlePasswordChange = (e) => {
@@ -50,8 +51,8 @@ export default class Login extends React.Component {
     this.setState({ email: e.target.value });
   }
 
-  render() {
 
+  render() {
     return (
       <div className={'center'}>
         <MainHeader header="Login"></MainHeader>

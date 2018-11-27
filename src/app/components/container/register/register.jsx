@@ -1,9 +1,10 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import MainHeader from '../shared/mainHeader';
 import { Mutation } from "react-apollo";
-import { CREATE_USER_MUTATION, GET_ALL_USERS_QUERY } from '../../graphql/users.graphql';
+
+import MainHeader from '../../presentation/mainHeader';
+import { CREATE_USER_MUTATION, GET_ALL_USERS_QUERY } from '../../../graphql/users.graphql';
 
 export default class Register extends React.Component {
   constructor() {
@@ -43,11 +44,15 @@ export default class Register extends React.Component {
       <Mutation 
       mutation={CREATE_USER_MUTATION}
       update = {(cache, {data: {createUser}}) => {
-        const {getAllUsers}= cache.readQuery({query: GET_ALL_USERS_QUERY});
-        cache.writeQuery({
-          query: GET_ALL_USERS_QUERY,
-          data: {getAllUsers: getAllUsers.concat([createUser]) }
-        })
+        try {
+          const {getAllUsers}= cache.readQuery({query: GET_ALL_USERS_QUERY});
+          cache.writeQuery({
+            query: GET_ALL_USERS_QUERY,
+            data: {getAllUsers: getAllUsers.concat([createUser]) }
+          })
+        } catch (error) {
+          console.log('Not updating cache because it dosen\'t exist.');
+        }
       }}
       >
 

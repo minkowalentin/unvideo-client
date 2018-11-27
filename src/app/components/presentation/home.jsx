@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MainHeader from './shared/mainHeader';
+import MainHeader from './mainHeader';
 
 class IndexComponent extends Component {
   render() {

@@ -1,5 +1,5 @@
-import { LOGIN_USER } from '../../../graphql/users.graphql';
-import client from '../../../graphql/apollo.config';
+import { LOGIN_USER } from '../users.graphql';
+import client from '../apollo.config';
 
 async function loginUser(email,password) {
     const {data} = await client.query({

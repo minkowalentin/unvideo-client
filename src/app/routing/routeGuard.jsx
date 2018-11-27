@@ -1,4 +1,4 @@
-import { getJwt } from '../../../api/global';
+import { getJwt } from '../api/global';
 
 export const isAuthorized = () => {
     // to do

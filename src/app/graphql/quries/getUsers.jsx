@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query } from "react-apollo";
-import { GET_ALL_USERS_QUERY } from '../../../graphql/users.graphql';
+import { GET_ALL_USERS_QUERY } from '../users.graphql';
 
 const GetUsers = () => (
     <Query query={GET_ALL_USERS_QUERY}>
@@ -14,7 +14,6 @@ const GetUsers = () => (
                     </div>
                 ))
             )
-
         }}
     </Query>
 );
