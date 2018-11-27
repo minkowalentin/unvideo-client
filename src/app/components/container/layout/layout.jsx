@@ -20,13 +20,10 @@ export class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: '',
     };
   }
 
   componentWillMount() {
-    // gets current page location
-    this.setState({ activeTab: this.props.location.pathname });
   }
 
 
@@ -35,18 +32,9 @@ export class Layout extends React.Component {
     if (link === '/logout') {
       this.logoutUser();
     } else {
-      this.setState({
-        activeTab: link,
-      });
       this.navigateNav(link)
     }
   };
-
-  handleExternalChange = (link) => {
-    this.setState({
-      activeTab: link,
-    });
-  }
 
   navigateNav = (link) => {
     this.props.history.push(link);
@@ -54,9 +42,6 @@ export class Layout extends React.Component {
 
   logoutUser = () => {
     logout();
-    this.setState({
-      activeTab: '/login',
-    });
     this.props.history.push('/login');
   }
 // child to parrent
@@ -66,7 +51,7 @@ export class Layout extends React.Component {
         <AppBar position="static">
           <Paper square>
             <Tabs
-              value={this.state.activeTab}
+              value={this.props.location.pathname}
               onChange={this.handleChange}
               indicatorColor="primary"
               textColor="primary"
