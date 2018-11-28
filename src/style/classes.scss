@@ -1,5 +1,8 @@
 @import "./variables.scss";
 
+.margin-s {
+    margin: 10px;
+}
 
 .header {
     color: $light_gray;
@@ -9,10 +12,19 @@
     color: #585858;
 }
 
+.success-comment {
+    font-size: 90%;
+    color: $green
+}
+
 .link {
     cursor: pointer;
 }
 
 .margin-s {
     margin: 5px;
+}
+
+.success {
+    color: $light_green
 }

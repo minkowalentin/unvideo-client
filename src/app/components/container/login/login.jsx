@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MainHeader from '../../presentation/mainHeader';
 import loginUser from '../../../graphql/quries/loginUser';
+import { Link } from 'react-router-dom'
 
 //api
 import { setInitialLocalStorage } from '../../../api/global';
@@ -51,7 +52,6 @@ export default class Login extends React.Component {
     this.setState({ email: e.target.value });
   }
 
-
   render() {
     return (
       <div className={'center'}>
@@ -80,8 +80,8 @@ export default class Login extends React.Component {
           </div>
           <Button variant="contained" color="primary" type="submit" value="Submit">
             Sign in
-      </Button>
-          <p className={"comment link"}>Create Account</p>
+          </Button>
+          <p><Link to={`/register`} className={"comment link"}>Create Account</Link></p>
         </form>
       </div>
     );

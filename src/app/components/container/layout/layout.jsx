@@ -11,22 +11,12 @@ import './layout.scss';
 import { logout } from '../../../api/global';
 import { isAuthenticated } from '../../../routing/routeGuard';
 
-
-//components
-// import MenuTab from '../../presentation/menuTab';
-// needs serious reformatting
-
 export class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     };
   }
-
-  componentWillMount() {
-  }
-
-
 
   handleChange = (event, link) => {
     if (link === '/logout') {
@@ -44,18 +34,18 @@ export class Layout extends React.Component {
     logout();
     this.props.history.push('/login');
   }
-// child to parrent
+  // child to parrent
   render() {
     return (
       <div>
         <AppBar position="static">
           <Paper square>
             <Tabs
+              className="tabs-container"
               value={this.props.location.pathname}
               onChange={this.handleChange}
               indicatorColor="primary"
-              textColor="primary"
-           >
+              textColor="primary">
               {isAuthenticated() && <Tab label="Home" value="/" />}
               {isAuthenticated() && <Tab label="User Management" value="/user-management" />}
               {isAuthenticated() && <Tab label="Logout" value="/logout" />}
