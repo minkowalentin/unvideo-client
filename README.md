@@ -13,8 +13,8 @@ The page will reload if you make edits.<br>
 
 ### Configure server .env file
 
-localPort= 3002 (if different port is specified adjust client port accordingly)
-db_username= *your db_username*
-db_password= *your db_password*
-database= *your db name*
-db_dialect: postgres
+localPort= 3002 (if different port is specified adjust client port accordingly)<br>
+db_username= *your db_username*<br>
+db_password= *your db_password*<br>
+database= *your db name*<br>
+db_dialect: postgres<br>
