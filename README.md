@@ -1,5 +1,9 @@
 ## React and Material-UI template for registering and loging in users
 
+### `npm install`
+
+Installs the listed node modules in package.json
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
