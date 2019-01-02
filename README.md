@@ -1,4 +1,4 @@
-# ogin-register
+# login-register
 
 ## React and Material-UI template for registering and loging in users
 
