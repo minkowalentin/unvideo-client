@@ -7,7 +7,7 @@ import 'typeface-roboto';
 import './style/styles.scss';
 
 // components
-import Layout from './app/components/container/layout/layout';
+import Layout from './app/components/layout/layout';
 import RouterComponent from './app/routing/router';
 
 class App extends Component {

@@ -1,13 +1,13 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import MainHeader from '../../presentation/mainHeader';
-import loginUser from '../../../graphql/quries/loginUser';
+import MainHeader from '../presentation/mainHeader';
+import loginUser from '../../graphql/quries/loginUser';
 import { Link } from 'react-router-dom'
 
 //api
-import { setInitialLocalStorage } from '../../../api/global';
-import errorHandling from '../../../api/errorHandling'
+import { setInitialLocalStorage } from '../../api/global';
+import errorHandling from '../../api/errorHandling'
 
 
 export default class Login extends React.Component {
