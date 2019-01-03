@@ -4,12 +4,12 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import { Mutation } from "react-apollo";
 import { Link } from 'react-router-dom'
-import MainHeader from '../../presentation/mainHeader';
-import { CREATE_USER_MUTATION, GET_ALL_USERS_QUERY } from '../../../graphql/users.graphql';
+import MainHeader from '../presentation/mainHeader';
+import { CREATE_USER_MUTATION, GET_ALL_USERS_QUERY } from '../../graphql/users.graphql';
 
 
 //api
-import errorHandling from '../../../api/errorHandling'
+import errorHandling from '../../api/errorHandling'
 
 export default class Register extends React.Component {
   constructor() {

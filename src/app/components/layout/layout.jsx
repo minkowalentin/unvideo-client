@@ -1,63 +1,109 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from "react-router-dom";
+import { compose } from 'redux';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Paper from '@material-ui/core/Paper';
-
-import './layout.scss';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 //api
-import { logout } from '../../../api/global';
-import { isAuthenticated } from '../../../routing/routeGuard';
+import { logout } from '../../api/global';
+import { isAuthenticated } from '../../routing/routeGuard';
 
-export class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  handleChange = (event, link) => {
-    if (link === '/logout') {
-      this.logoutUser();
-    } else {
-      this.navigateNav(link)
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    grow: {
+        flexGrow: 1,
     }
-  };
-
-  navigateNav = (link) => {
-    this.props.history.push(link);
-  }
-
-  logoutUser = () => {
-    logout();
-    this.props.history.push('/login');
-  }
-  // child to parrent
-  render() {
-    return (
-      <div>
-        <AppBar position="static">
-          <Paper square>
-            <Tabs
-              className="tabs-container"
-              value={this.props.location.pathname}
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              textColor="primary">
-              {isAuthenticated() && <Tab label="Home" value="/" />}
-              {isAuthenticated() && <Tab label="User Management" value="/user-management" />}
-              {isAuthenticated() && <Tab label="Logout" value="/logout" />}
-              {!isAuthenticated() && <Tab label="Login" value="/login" />}
-              {!isAuthenticated() && <Tab label="Register" value="/register" />}
-            </Tabs>
-          </Paper>
-        </AppBar>
-      </div>
-    );
-  }
 };
 
-export default withRouter(Layout);
+class Layout extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+    }
 
+    navigateNav = (link, e) => {
+        if (link === '/logout') {
+            this.logoutUser();
+        }
+        else {
+            this.props.history.push(link);
+        }
+    }
+
+    logoutUser = () => {
+        logout();
+        this.props.history.push('/login');
+    }
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Toolbar>
+
+                        <Button
+                            color="inherit"
+                            onClick={(e) => this.navigateNav('/', e)}
+                        >
+                            Home
+                            </Button>
+
+                        {isAuthenticated() &&
+                            <Button
+                                color="inherit"
+                                onClick={(e) => this.navigateNav('/user-management', e)}
+                            >
+                                User Management
+                            </Button>
+                        }
+                        <span className={classes.grow} >
+                        </span>
+                        {isAuthenticated() &&
+                            <Button
+                                color="inherit"
+                                onClick={(e) => this.navigateNav('/logout', e)}
+                            >
+                                Logout
+                            </Button>
+                        }
+                        {!isAuthenticated() &&
+                            <Button
+                                color="inherit"
+                                onClick={(e) => this.navigateNav('/login', e)}
+                            >
+                                Login
+                            </Button>
+                        }
+                        {!isAuthenticated() &&
+                            <Button
+                                color="inherit"
+                                onClick={(e) => this.navigateNav('/register', e)}
+                            >
+                                Register
+                            </Button>
+                        }
+                    </Toolbar>
+                </AppBar>
+            </div>
+        );
+    }
+}
+
+Layout.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default compose(
+    withStyles(styles),
+    withRouter,
+)(Layout);

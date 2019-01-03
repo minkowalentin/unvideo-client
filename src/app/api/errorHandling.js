@@ -1,10 +1,15 @@
 const errorHandling = {
     //Format error logs
     graphiqlError(error) {
-        error.map(({ message, locations, path }) =>
+        try{
+            error.map(({ message, locations, path }) =>
             console.log(
                 `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
             ));
+        } catch(err) {
+            console.log(error);
+        }
+  
     },
     networkError(error) {
         console.log(`[Network error]: ${error}`);

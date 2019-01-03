@@ -1,6 +1,6 @@
 import React from 'react';
-import GetUsers from '../../../graphql/quries/getUsers';
-import MainHeader from '../../presentation/mainHeader';
+import GetUsers from '../../graphql/quries/getUsers';
+import MainHeader from '../presentation/mainHeader';
 
 class UserManagement extends React.Component {
     render() {
